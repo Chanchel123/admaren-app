@@ -1,0 +1,70 @@
+<div class="map-wrapper">
+  <div id="map" #mapContainer class="map-container"></div>
+
+  <!-- Weather Layer Controls -->
+  <div class="layer-controls" *ngIf="mapMode() === 'windy'">
+    <div class="layer-buttons">
+      <button 
+        class="layer-btn" 
+        [class.active]="currentWeatherLayer() === 'wind'"
+        (click)="currentWeatherLayer.set('wind')"
+        title="Wind Speed & Direction">
+        💨 Wind
+      </button>
+      <button 
+        class="layer-btn" 
+        [class.active]="currentWeatherLayer() === 'temperature'"
+        (click)="currentWeatherLayer.set('temperature')"
+        title="Temperature">
+        🌡️ Temp
+      </button>
+      <button 
+        class="layer-btn" 
+        [class.active]="currentWeatherLayer() === 'pressure'"
+        (click)="currentWeatherLayer.set('pressure')"
+        title="Air Pressure">
+        ◔ Press
+      </button>
+      <button 
+        class="layer-btn" 
+        [class.active]="currentWeatherLayer() === 'humidity'"
+        (click)="currentWeatherLayer.set('humidity')"
+        title="Humidity">
+        💧 RH
+      </button>
+      <button 
+        class="layer-btn" 
+        [class.active]="currentWeatherLayer() === 'cape'"
+        (click)="currentWeatherLayer.set('cape')"
+        title="Convective Energy">
+        ⚡ CAPE
+      </button>
+    </div>
+  </div>
+  
+  <div class="map-info-overlay" *ngIf="!showingRoute()">
+    <div class="info-panel">
+      <h3>Select Route Coordinates</h3>
+      <div class="selection-info">
+        <p *ngIf="selectionMode() === 'source'" class="instruction">
+          📍 Click on grid to select <strong>Source</strong> location
+        </p>
+        <p *ngIf="selectionMode() === 'destination'" class="instruction">
+          📍 Click on grid to select <strong>Destination</strong> location
+        </p>
+      </div>
+      <div class="coordinates-display" *ngIf="selectedCoordinates().source as source">
+        <p><strong>Source:</strong> ({{ source.lat }}, {{ source.lon }})</p>
+      </div>
+      <div class="coordinates-display" *ngIf="selectedCoordinates().destination as destination">
+        <p><strong>Destination:</strong> ({{ destination.lat }}, {{ destination.lon }})</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-info-overlay" *ngIf="showingRoute()">
+    <button class="new-route-btn" (click)="resetSelection()">
+      🔄 New Route
+    </button>
+  </div>
+</div>

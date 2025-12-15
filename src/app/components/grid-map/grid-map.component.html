@@ -1,0 +1,65 @@
+<div class="grid-map-container">
+  <div class="grid-header">
+    <h2>World Grid Map - Select Source and Destination</h2>
+    <div class="instruction-panel">
+      <p class="instruction">{{ getCurrentInstruction() }}</p>
+      <button 
+        class="reset-button" 
+        (click)="resetSelection()"
+        *ngIf="selectedCoordinates().source || selectedCoordinates().destination"
+      >
+        🔄 Reset Selection
+      </button>
+    </div>
+  </div>
+
+  <div class="grid-info">
+    <div class="info-item">
+      <strong>Source:</strong>
+      <span *ngIf="selectedCoordinates().source as source; else noSource">
+        Lat: {{ source.lat }}, Lon: {{ source.lon }}
+      </span>
+      <ng-template #noSource>
+        <span class="placeholder">Not selected</span>
+      </ng-template>
+    </div>
+    <div class="info-item">
+      <strong>Destination:</strong>
+      <span *ngIf="selectedCoordinates().destination as destination; else noDestination">
+        Lat: {{ destination.lat }}, Lon: {{ destination.lon }}
+      </span>
+      <ng-template #noDestination>
+        <span class="placeholder">Not selected</span>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="grid-wrapper">
+    <div class="grid">
+      <div
+        *ngFor="let cell of gridCells()"
+        class="grid-cell"
+        [class.selected]="isCellSelected(cell)"
+        [class.highlighted]="isCellHighlighted(cell)"
+        (click)="selectCell(cell)"
+        [title]="'Lat: ' + cell.lat + ', Lon: ' + cell.lon"
+      >
+        <div class="cell-content">
+          <span class="cell-id">{{ cell.id }}</span>
+          <span class="cell-coords">({{ cell.lat }}, {{ cell.lon }})</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-legend">
+    <div class="legend-item">
+      <div class="legend-color highlighted"></div>
+      <span>Selected Coordinate</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color normal"></div>
+      <span>Available Cell</span>
+    </div>
+  </div>
+</div>

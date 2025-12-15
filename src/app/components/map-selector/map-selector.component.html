@@ -1,0 +1,98 @@
+<div class="map-selector-container">
+	<div class="panel-header">
+		<h2>🗺️ Map Controls</h2>
+	</div>
+
+	<!-- Map Mode Selector -->
+	<div class="control-section">
+		<label class="section-label">Map Type</label>
+		<select [value]="selectedMapMode()" (change)="onMapModeChange($any($event.target).value)" class="map-mode-select">
+			@for (mode of mapModes; track mode.value) {
+				<option [value]="mode.value">{{ mode.label }}</option>
+			}
+		</select>
+		<p class="mode-description">
+			@if (selectedMapMode() === 'windy') {
+				Shows weather layers: wind, temperature, pressure, humidity, and waves
+			} @else {
+				Standard geographical map view
+			}
+		</p>
+	</div>
+
+	<!-- Selected Locations Display -->
+	<div class="control-section">
+		<label class="section-label">📍 Selected Locations</label>
+		
+		@if (!hasLocations()) {
+			<div class="no-locations">
+				<p>No locations selected yet.</p>
+				<p class="hint">Click on the map grid to select source and destination</p>
+			</div>
+		} @else {
+			<div class="locations-info">
+				<!-- Source Location -->
+				<div class="location-item source-location">
+					<div class="location-type">📌 Source</div>
+					<div class="location-details">
+						<div class="location-name">{{ getLocationName(sourceLocation()) }}</div>
+						<div class="location-coords">{{ formatCoordinates(sourceLocation()) }}</div>
+					</div>
+				</div>
+
+				<!-- Destination Location -->
+				@if (destinationLocation()) {
+					<div class="location-item destination-location">
+						<div class="location-type">🎯 Destination</div>
+						<div class="location-details">
+							<div class="location-name">{{ getLocationName(destinationLocation()) }}</div>
+							<div class="location-coords">{{ formatCoordinates(destinationLocation()) }}</div>
+						</div>
+					</div>
+				}
+
+				<!-- Distance Info (placeholder) -->
+				<div class="distance-info">
+					<span class="info-label">Locations Selected:</span>
+					<span class="info-value">{{ locationCount() }}</span>
+				</div>
+			</div>
+		}
+	</div>
+
+	<!-- Weather Summary Preview -->
+	@if (hasLocations()) {
+		<div class="control-section">
+			<label class="section-label">🌊 Weather Summary</label>
+			<div class="weather-summary">
+				<div class="summary-note">
+					Weather data will be displayed here when you export the report
+				</div>
+			</div>
+		</div>
+	}
+
+	<!-- Action Buttons -->
+	@if (hasLocations()) {
+		<div class="action-buttons">
+			<button class="btn btn-primary" onclick="document.querySelector('app-weather-table')?.querySelector('.export-button')?.click()">
+				📊 Generate Report
+			</button>
+			<button class="btn btn-secondary">
+				🔄 Clear Selection
+			</button>
+		</div>
+	}
+
+	<!-- Info Panel -->
+	<div class="info-panel">
+		<div class="info-header">ℹ️ How to Use</div>
+		<ul class="info-list">
+			<li>Select map type above</li>
+			<li>Click on map grid to select source location</li>
+			<li>Click again to select destination</li>
+			<li>Weather data displays automatically</li>
+			<li>Generate report to export data</li>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,40 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #0a1428 0%, #0d1f3c 50%, #1a3a52 100%);
+  overflow: hidden;
+
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: linear-gradient(180deg, rgba(10, 20, 40, 0.9) 0%, rgba(13, 31, 60, 0.85) 100%);
+
+    // Ocean-themed scrollbar styling
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: linear-gradient(180deg, rgba(10, 20, 40, 0.8) 0%, rgba(13, 31, 60, 0.6) 100%);
+      border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #00bfff 0%, #1e90ff 50%, #0088cc 100%);
+      border-radius: 5px;
+      border: 2px solid rgba(10, 20, 40, 0.5);
+
+      &:hover {
+        background: linear-gradient(180deg, #00d4ff 0%, #1e90ff 50%, #0099ff 100%);
+      }
+    }
+
+    // Firefox scrollbar
+    scrollbar-width: thin;
+    scrollbar-color: #1e90ff rgba(10, 20, 40, 0.8);
+  }
+}

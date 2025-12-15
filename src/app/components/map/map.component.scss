@@ -1,0 +1,204 @@
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 136, 204, 0.2);
+  margin-bottom: 20px;
+  overflow: hidden;
+  border: 2px solid rgba(0, 191, 255, 0.3);
+
+  .map-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #1a5f7a 0%, #2a8fa3 100%);
+
+    :deep(.leaflet-container) {
+      border-radius: 8px;
+      background: linear-gradient(135deg, #1a5f7a 0%, #2a8fa3 100%);
+    }
+
+    :deep(.leaflet-control-attribution) {
+      font-size: 10px;
+      background: rgba(13, 31, 60, 0.8) !important;
+      color: #a8d8ff !important;
+    }
+
+    :deep(.leaflet-tile) {
+      filter: brightness(0.85) contrast(1.2) saturate(0.9);
+    }
+
+    :deep(.leaflet-grid-label-marker) {
+      z-index: 600;
+    }
+  }
+
+  // Weather Layer Controls
+  .layer-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, rgba(13, 31, 60, 0.95) 0%, rgba(26, 58, 82, 0.9) 100%);
+    border-radius: 12px;
+    padding: 12px 16px;
+    z-index: 1000;
+    box-shadow: 0 8px 32px rgba(0, 136, 204, 0.3);
+    border: 1px solid rgba(0, 191, 255, 0.3);
+    animation: slideUp 0.4s ease-out;
+
+    .layer-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .layer-btn {
+        padding: 8px 16px;
+        background: linear-gradient(135deg, rgba(0, 191, 255, 0.2) 0%, rgba(30, 144, 255, 0.1) 100%);
+        color: #a8d8ff;
+        border: 1.5px solid rgba(0, 191, 255, 0.4);
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+
+        &:hover {
+          background: linear-gradient(135deg, rgba(0, 191, 255, 0.35) 0%, rgba(30, 144, 255, 0.25) 100%);
+          border-color: rgba(0, 191, 255, 0.6);
+          color: #00d4ff;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 191, 255, 0.25);
+        }
+
+        &.active {
+          background: linear-gradient(135deg, #00bfff 0%, #1e90ff 100%);
+          color: white;
+          border-color: #00d4ff;
+          box-shadow: 0 0 20px rgba(0, 191, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+      }
+    }
+  }
+
+  .map-info-overlay {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: linear-gradient(135deg, rgba(13, 31, 60, 0.95) 0%, rgba(26, 58, 82, 0.9) 100%);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 136, 204, 0.25);
+    padding: 15px 20px;
+    z-index: 1000;
+    max-width: 350px;
+    animation: slideIn 0.3s ease-out;
+    border-left: 4px solid #00bfff;
+    border: 1px solid rgba(0, 191, 255, 0.3);
+
+    .info-panel {
+      h3 {
+        margin: 0 0 12px 0;
+        color: #00d4ff;
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .instruction {
+        margin: 10px 0;
+        color: #00bfff;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .coordinates-display {
+        margin: 10px 0;
+        padding: 12px;
+        background: linear-gradient(135deg, rgba(0, 191, 255, 0.1) 0%, rgba(30, 144, 255, 0.08) 100%);
+        border-radius: 6px;
+        font-size: 13px;
+        border: 1px solid rgba(0, 191, 255, 0.25);
+
+        p {
+          margin: 5px 0;
+          color: #a8d8ff;
+
+          strong {
+            color: #00bfff;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+
+    .new-route-btn {
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #00bfff 0%, #1e90ff 100%);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      justify-content: center;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 191, 255, 0.3);
+        background: linear-gradient(135deg, #00d4ff 0%, #4169E1 100%);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Grid styling */
+:deep(.grid-number) {
+  font-weight: bold;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(0, 191, 255, 0.3);
+  color: #00d4ff;
+  padding: 2px 4px;
+  border-radius: 3px;
+
+  &:hover {
+    background: #00bfff;
+    color: #0a1428;
+    transform: scale(1.15);
+  }
+}
+

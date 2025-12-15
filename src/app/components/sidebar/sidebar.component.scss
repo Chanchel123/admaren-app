@@ -1,0 +1,99 @@
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background: linear-gradient(180deg, #0d1f3c 0%, #1a3a52 50%, #0f2540 100%);
+  color: #e0f2ff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 15px rgba(0, 136, 204, 0.2), inset -1px 0 2px rgba(0, 200, 255, 0.1);
+  border-right: 1px solid rgba(0, 200, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00bfff, transparent);
+  }
+
+  .sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(0, 200, 255, 0.2);
+    background: linear-gradient(180deg, rgba(0, 136, 204, 0.15) 0%, transparent 100%);
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #00bfff 0%, #1e90ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 1px;
+    }
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .nav-item {
+      background: none;
+      border: none;
+      color: #a8d8ff;
+      padding: 15px 20px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      position: relative;
+      margin: 0 10px;
+      border-radius: 8px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 0;
+        background: linear-gradient(180deg, #00bfff, #1e90ff);
+        border-radius: 2px;
+        transition: height 0.3s ease;
+      }
+
+      &:hover {
+        background: linear-gradient(90deg, rgba(0, 136, 204, 0.2) 0%, transparent 100%);
+        color: #00d4ff;
+        padding-left: 30px;
+
+        &::before {
+          height: 24px;
+        }
+      }
+
+      &:active {
+        background: linear-gradient(90deg, rgba(0, 136, 204, 0.3) 0%, transparent 100%);
+      }
+
+      .icon {
+        font-size: 20px;
+      }
+
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+}

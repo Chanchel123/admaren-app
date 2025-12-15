@@ -1,0 +1,50 @@
+<div class="route-input-container">
+  <h3>Select Route</h3>
+  <p class="subtitle">Click on the map or enter locations below</p>
+  
+  <div class="input-group">
+    <div class="input-field">
+      <label for="source">
+        <span class="icon">📍</span>
+        Source Location
+      </label>
+      <input 
+        id="source"
+        type="text"
+        [(ngModel)]="source"
+        placeholder="e.g., Port A, Cell 1 (lat:0, lon:0)"
+        class="location-input"
+      />
+    </div>
+
+    <div class="divider">
+      <span class="arrow">↔</span>
+    </div>
+
+    <div class="input-field">
+      <label for="destination">
+        <span class="icon">🎯</span>
+        Destination Location
+      </label>
+      <input 
+        id="destination"
+        type="text"
+        [(ngModel)]="destination"
+        placeholder="e.g., Port B, Cell 100 (lat:10, lon:20)"
+        class="location-input"
+      />
+    </div>
+  </div>
+
+  <button 
+    class="route-button"
+    (click)="submitRoute()"
+    [disabled]="!source() || !destination()"
+  >
+    <span>🛣️</span> Calculate Route
+  </button>
+
+  <div class="help-text">
+    <small>💡 Tip: Click on grid numbers on the map to auto-fill these fields</small>
+  </div>
+</div>

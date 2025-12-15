@@ -1,11 +1,12 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<div class="app-container">
+  <app-sidebar (optionSelected)="onOptionSelected($event)"></app-sidebar>
+  
+  <div class="main-content">
+    <app-apps-content *ngIf="currentView() === 'apps'"></app-apps-content>
+    <app-search-content *ngIf="currentView() === 'search'"></app-search-content>
+    <app-chat-content *ngIf="currentView() === 'chat'"></app-chat-content>
+  </div>
+</div>
 
 <style>
   :host {
@@ -181,7 +182,7 @@
     }
   }
 </style>
-
+<!-- 
 <main class="main">
   <div class="content">
     <div class="left-side">
@@ -328,7 +329,7 @@
       </div>
     </div>
   </div>
-</main>
+</main> -->
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->

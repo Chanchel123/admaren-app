@@ -1,0 +1,72 @@
+<div class="weather-table-container">
+  <div class="table-header">
+    <div class="header-left">
+      <h2>Ocean Weather Data</h2>
+      @if (hasCustomData()) {
+        <span class="badge badge-custom">📍 Location-Based Report</span>
+      }
+    </div>
+    <button class="export-button" (click)="exportToExcel()">
+      <span>📊</span> Export to Excel
+    </button>
+  </div>
+  <div class="table-wrapper">
+    <table class="weather-table">
+      <thead>
+        <tr>
+          <th>Location</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>Wind Speed (knots)</th>
+          <th>Wind Direction (°)</th>
+          <th>Wave Height (m)</th>
+          <th>Temperature (°C)</th>
+          <th>Humidity (%)</th>
+          <th>Pressure (mb)</th>
+          <th>Beaufort Scale</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of weatherData(); track row.id) {
+          <tr class="data-row">
+            <td class="location-cell">{{ row.location }}</td>
+            <td class="numeric-cell">{{ row.latitude.toFixed(2) }}</td>
+            <td class="numeric-cell">{{ row.longitude.toFixed(2) }}</td>
+            <td class="numeric-cell">{{ row.windSpeed.toFixed(1) }}</td>
+            <td class="numeric-cell">{{ row.windDirection }}</td>
+            <td class="numeric-cell">{{ row.waveHeight.toFixed(1) }}</td>
+            <td class="numeric-cell">{{ row.temperature.toFixed(1) }}</td>
+            <td class="numeric-cell">{{ row.humidity }}</td>
+            <td class="numeric-cell">{{ row.pressure }}</td>
+            <td class="scale-cell">{{ row.beaufortScale }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Summary Stats -->
+  @if (weatherData().length > 0) {
+    <div class="summary-stats">
+      <h3>📊 Report Summary</h3>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-label">Total Locations</span>
+          <span class="stat-value">{{ weatherData().length }}</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Avg Wind Speed</span>
+          <span class="stat-value">{{ getAverageWindSpeed().toFixed(1) }} knots</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Avg Temperature</span>
+          <span class="stat-value">{{ getAverageTemperature().toFixed(1) }}°C</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Avg Pressure</span>
+          <span class="stat-value">{{ getAveragePressure().toFixed(0) }} mb</span>
+        </div>
+      </div>
+    </div>
+  }
+</div>

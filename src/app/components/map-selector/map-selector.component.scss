@@ -1,0 +1,329 @@
+.map-selector-container {
+	background: linear-gradient(135deg, #0f1b3c 0%, #1a2f5a 50%, #0d1f4d 100%);
+	border-left: 2px solid rgba(100, 150, 255, 0.2);
+	height: 100%;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+
+	&::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: rgba(10, 20, 50, 0.15);
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: linear-gradient(180deg, #4169E1 0%, #87CEEB 100%);
+		border-radius: 3px;
+
+		&:hover {
+			background: linear-gradient(180deg, #5578F0 0%, #99FFFF 100%);
+		}
+	}
+
+	.panel-header {
+		padding: 18px;
+		border-bottom: 2px solid rgba(100, 150, 255, 0.2);
+		background: linear-gradient(135deg, rgba(65, 105, 225, 0.08) 0%, rgba(30, 60, 150, 0.05) 100%);
+
+		h2 {
+			margin: 0;
+			color: #87CEEB;
+			font-size: 16px;
+			font-weight: 700;
+			letter-spacing: 0.4px;
+			text-transform: uppercase;
+		}
+	}
+
+	.control-section {
+		padding: 14px;
+		border-bottom: 1px solid rgba(100, 150, 255, 0.12);
+		display: flex;
+		flex-direction: column;
+		gap: 9px;
+
+		.section-label {
+			color: #99ccff;
+			font-size: 11px;
+			font-weight: 700;
+			letter-spacing: 0.3px;
+			text-transform: uppercase;
+			margin: 0;
+		}
+
+		.map-mode-select {
+			padding: 8px 10px;
+			background: rgba(65, 105, 225, 0.12);
+			border: 1px solid rgba(100, 150, 255, 0.25);
+			border-radius: 4px;
+			color: #d0d0e0;
+			font-size: 12px;
+			font-weight: 500;
+			cursor: pointer;
+			transition: all 0.2s ease;
+
+			&:hover {
+				background: rgba(65, 105, 225, 0.2);
+				border-color: rgba(100, 150, 255, 0.4);
+			}
+
+			&:focus {
+				outline: none;
+				border-color: #87CEEB;
+				box-shadow: 0 0 5px rgba(65, 105, 225, 0.2);
+			}
+
+			option {
+				background: #1a2f5a;
+				color: #d0d0e0;
+			}
+		}
+
+		.mode-description {
+			margin: 0;
+			color: #999;
+			font-size: 11px;
+			line-height: 1.3;
+			font-style: italic;
+			padding: 5px;
+			background: rgba(65, 105, 225, 0.03);
+			border-left: 2px solid rgba(135, 206, 235, 0.2);
+			border-radius: 2px;
+		}
+
+		.no-locations {
+			padding: 12px;
+			background: rgba(65, 105, 225, 0.08);
+			border: 1px dashed rgba(100, 150, 255, 0.15);
+			border-radius: 4px;
+			text-align: center;
+
+			p {
+				margin: 4px 0;
+				color: #999;
+				font-size: 11px;
+
+				&.hint {
+					color: #87CEEB;
+					font-size: 10px;
+					font-weight: 500;
+				}
+			}
+		}
+
+		.locations-info {
+			display: flex;
+			flex-direction: column;
+			gap: 7px;
+
+			.location-item {
+				padding: 9px;
+				border-radius: 4px;
+				border: 1px solid rgba(100, 150, 255, 0.18);
+				background: rgba(70, 100, 200, 0.1);
+				display: flex;
+				gap: 7px;
+
+				.location-type {
+					font-size: 10px;
+					font-weight: 700;
+					color: #99ccff;
+					white-space: nowrap;
+				}
+
+				.location-details {
+					flex: 1;
+					display: flex;
+					flex-direction: column;
+					gap: 2px;
+
+					.location-name {
+						color: #d0d0e0;
+						font-size: 11px;
+						font-weight: 600;
+						word-break: break-word;
+					}
+
+					.location-coords {
+						color: #87CEEB;
+						font-size: 9px;
+						font-family: monospace;
+						font-weight: 500;
+					}
+				}
+
+				&.source-location {
+					border-color: rgba(100, 150, 255, 0.2);
+					background: rgba(70, 100, 200, 0.13);
+				}
+
+				&.destination-location {
+					border-color: rgba(135, 206, 235, 0.18);
+					background: rgba(135, 206, 235, 0.1);
+				}
+			}
+
+			.distance-info {
+				padding: 7px;
+				border-radius: 4px;
+				background: rgba(65, 105, 225, 0.07);
+				border: 1px solid rgba(100, 150, 255, 0.1);
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+
+				.info-label {
+					color: #999;
+					font-size: 10px;
+					font-weight: 500;
+				}
+
+				.info-value {
+					color: #4169E1;
+					font-size: 13px;
+					font-weight: 700;
+					background: rgba(65, 105, 225, 0.1);
+					padding: 2px 5px;
+					border-radius: 2px;
+				}
+			}
+		}
+
+		.weather-summary {
+			.summary-note {
+				padding: 9px;
+				background: rgba(65, 105, 225, 0.07);
+				border: 1px dashed rgba(100, 150, 255, 0.12);
+				border-radius: 4px;
+				color: #99ccff;
+				font-size: 10px;
+				text-align: center;
+				line-height: 1.3;
+			}
+		}
+	}
+
+	.action-buttons {
+		padding: 12px;
+		border-top: 1px solid rgba(100, 150, 255, 0.12);
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+
+		.btn {
+			padding: 10px 14px;
+			border: none;
+			border-radius: 5px;
+			font-size: 12px;
+			font-weight: 600;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			text-transform: uppercase;
+			letter-spacing: 0.2px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 6px;
+
+			&.btn-primary {
+				background: linear-gradient(135deg, #4169E1 0%, #6495ED 100%);
+				color: #fff;
+				border: 1px solid rgba(255, 255, 255, 0.15);
+
+				&:hover {
+					background: linear-gradient(135deg, #5578F0 0%, #73A5FF 100%);
+					transform: translateY(-2px);
+					box-shadow: 0 5px 15px rgba(65, 105, 225, 0.25);
+				}
+
+				&:active {
+					transform: translateY(0);
+				}
+			}
+
+			&.btn-secondary {
+				background: rgba(65, 105, 225, 0.15);
+				color: #87CEEB;
+				border: 1px solid rgba(100, 150, 255, 0.25);
+
+				&:hover {
+					background: rgba(65, 105, 225, 0.25);
+					border-color: rgba(100, 150, 255, 0.4);
+				}
+			}
+		}
+	}
+
+	.info-panel {
+		margin-top: auto;
+		padding: 12px;
+		background: rgba(65, 105, 225, 0.1);
+		border-top: 1px solid rgba(100, 150, 255, 0.15);
+		border-radius: 0;
+
+		.info-header {
+			color: #99ccff;
+			font-size: 11px;
+			font-weight: 700;
+			letter-spacing: 0.3px;
+			text-transform: uppercase;
+			margin-bottom: 8px;
+		}
+
+		.info-list {
+			margin: 0;
+			padding-left: 16px;
+			list-style: none;
+
+			li {
+				color: #999;
+				font-size: 11px;
+				line-height: 1.5;
+				margin-bottom: 5px;
+
+				&:before {
+					content: '▸ ';
+					color: #4169E1;
+					margin-right: 5px;
+					font-weight: 700;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.map-selector-container {
+		.control-section {
+			padding: 10px;
+
+			.section-label {
+				font-size: 10px;
+			}
+
+			.map-mode-select {
+				font-size: 11px;
+				padding: 7px 9px;
+			}
+		}
+
+		.action-buttons {
+			padding: 10px;
+
+			.btn {
+				font-size: 11px;
+				padding: 8px 10px;
+			}
+		}
+
+		.info-panel {
+			.info-list li {
+				font-size: 10px;
+			}
+		}
+	}
+}

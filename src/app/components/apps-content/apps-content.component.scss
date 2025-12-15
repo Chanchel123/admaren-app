@@ -1,0 +1,96 @@
+.apps-content {
+	width: 100%;
+	background: linear-gradient(180deg, rgba(10, 20, 40, 0.9) 0%, rgba(13, 31, 60, 0.85) 100%);
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+
+	.dashboard-container {
+		display: grid;
+		grid-template-columns: 1fr 350px;
+		gap: 0;
+		flex: 1;
+		min-height: 0;
+
+		.map-section {
+			display: flex;
+			flex-direction: column;
+			background: linear-gradient(135deg, rgba(10, 20, 40, 0.95) 0%, rgba(13, 31, 60, 0.9) 100%);
+			border-right: 2px solid rgba(100, 150, 255, 0.2);
+
+			.content-scroll {
+				flex: 1;
+				padding: 20px;
+				display: flex;
+				flex-direction: column;
+				gap: 20px;
+				overflow-y: auto;
+
+				&::-webkit-scrollbar {
+					width: 8px;
+				}
+
+				&::-webkit-scrollbar-track {
+					background: rgba(10, 20, 50, 0.2);
+				}
+
+				&::-webkit-scrollbar-thumb {
+					background: linear-gradient(180deg, #4169E1 0%, #87CEEB 100%);
+					border-radius: 4px;
+
+					&:hover {
+						background: linear-gradient(180deg, #5578F0 0%, #99FFFF 100%);
+					}
+				}
+			}
+		}
+
+		.control-panel-section {
+			display: flex;
+			flex-direction: column;
+			background: linear-gradient(135deg, #0f1b3c 0%, #1a2f5a 50%, #0d1f4d 100%);
+			border-left: 2px solid rgba(100, 150, 255, 0.3);
+			overflow: hidden;
+
+			app-map-selector {
+				height: 100%;
+				overflow-y: auto;
+			}
+		}
+	}
+
+	.weather-table-section {
+		padding: 20px;
+		background: linear-gradient(135deg, rgba(15, 27, 60, 0.8) 0%, rgba(13, 31, 77, 0.8) 100%);
+		border-top: 2px solid rgba(100, 150, 255, 0.2);
+
+		app-weather-table {
+			display: block;
+		}
+	}
+
+	@media (max-width: 1200px) {
+		.dashboard-container {
+			grid-template-columns: 1fr 300px;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.dashboard-container {
+			grid-template-columns: 1fr;
+
+			.map-section {
+				border-right: none;
+				border-bottom: 2px solid rgba(100, 150, 255, 0.2);
+			}
+
+			.control-panel-section {
+				border-left: none;
+				border-top: 2px solid rgba(100, 150, 255, 0.2);
+				max-height: 300px;
+			}
+		}
+	}
+}
+
+

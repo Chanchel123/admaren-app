@@ -1,0 +1,211 @@
+.grid-map-container {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .grid-header {
+    padding: 20px;
+    border-bottom: 2px solid #eee;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+
+    h2 {
+      margin: 0 0 15px 0;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .instruction-panel {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+
+      .instruction {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .reset-button {
+        padding: 8px 16px;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 2px solid white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.3);
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+
+  .grid-info {
+    padding: 15px 20px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #eee;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+
+      strong {
+        color: #333;
+        min-width: 100px;
+      }
+
+      span {
+        color: #667eea;
+        font-weight: 500;
+
+        &.placeholder {
+          color: #999;
+          font-style: italic;
+        }
+      }
+    }
+  }
+
+  .grid-wrapper {
+    flex: 1;
+    overflow: auto;
+    padding: 20px;
+    background: #f9f9f9;
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(36, 1fr);
+      gap: 4px;
+      min-width: fit-content;
+
+      .grid-cell {
+        aspect-ratio: 1;
+        min-width: 80px;
+        min-height: 80px;
+        border: 2px solid #ddd;
+        border-radius: 6px;
+        background: white;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+        .cell-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 4px;
+          text-align: center;
+
+          .cell-id {
+            font-weight: 700;
+            font-size: 16px;
+            color: #333;
+          }
+
+          .cell-coords {
+            font-size: 10px;
+            color: #999;
+            line-height: 1.2;
+          }
+        }
+
+        &:hover {
+          background: #f0f0f0;
+          border-color: #667eea;
+          box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+          transform: translateY(-2px);
+        }
+
+        &.highlighted {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          border-color: #667eea;
+          box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+
+          .cell-content {
+            .cell-id {
+              color: white;
+            }
+
+            .cell-coords {
+              color: rgba(255, 255, 255, 0.9);
+            }
+          }
+        }
+
+        &.selected {
+          background: #667eea;
+          color: white;
+          border-color: #764ba2;
+          box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+          transform: scale(1.05);
+
+          .cell-content {
+            .cell-id {
+              color: white;
+            }
+
+            .cell-coords {
+              color: rgba(255, 255, 255, 0.9);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .grid-legend {
+    padding: 15px 20px;
+    background: white;
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 30px;
+    font-size: 13px;
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .legend-color {
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        border: 2px solid #ddd;
+
+        &.highlighted {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          border-color: #667eea;
+        }
+
+        &.normal {
+          background: white;
+        }
+      }
+
+      span {
+        color: #555;
+        font-weight: 500;
+      }
+    }
+  }
+}
