@@ -8,6 +8,14 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <!-- Application Loader - Shown until Angular bootstraps -->
+    <div id="app-loader" class="app-loader">
+      <div class="loader-content">
+        <div class="spinner"></div>
+        <p class="loader-text">Loading...</p>
+      </div>
+    </div>
+  </app-root>
 </body>
 </html>
